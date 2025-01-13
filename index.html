@@ -1,40 +1,125 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Quiz - app</title>
-    <link rel="stylesheet" href="style.css" />
-    <!-- <script src="index.js" defer></script> -->
-  </head>
-  <body>
-    <div class="container">
-      <h1 id="quiz-title">Quiz App</h1>
-      <div id="question-container">
-          <p id="question-text"></p>
-          <ul id="option-list">
-              <li>
-                  <input type="radio" name="option" id="option1">
-                  <label for="option1"></label>
-              </li>
-              <li>
-                  <input type="radio" name="option" id="option2">
-                  <label for="option2"></label>
-              </li>
-              <li>
-                  <input type="radio" name="option" id="option3">
-                  <label for="option3"></label>
-              </li>
-              <li>
-                  <input type="radio" name="option" id="option4">
-                  <label for="option4"></label>
-              </li>
-          </ul>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz App</title>
+  <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+  <style>
+    .correct { background-color: #d4edda; }
+    .incorrect { background-color: #f8d7da; }
+  </style>
+</head>
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+  <div class="w-full max-w-md bg-white p-6 rounded-lg shadow-md">
+    <header class="bg-gray-800 text-white text-center py-4 rounded">
+      <h1 class="text-xl font-bold">Quiz App</h1>
+    </header>
+
+    <main class="mt-4">
+      <div id="quiz-container">
+        <p id="question" class="text-lg font-medium"></p>
+
+        <div id="options" class="mt-4 space-y-2">
+          <!-- Options will be dynamically inserted here -->
+        </div>
+
+        <button id="next-btn" class="mt-4 w-full bg-blue-500 text-white py-2 rounded hover:bg-blue-600">Next</button>
       </div>
-      <button id="next-button">Next</button>
-      <div id="result-message"></div>
-      <div id="score-display">Score: 0</div>
+
+      <div id="result-container" class="hidden text-center">
+        <p class="text-lg font-bold">Quiz Completed!</p>
+        <p id="final-score" class="text-xl mt-2"></p>
+        <button id="restart-btn" class="mt-4 bg-green-500 text-white py-2 px-4 rounded hover:bg-green-600">Restart Quiz</button>
+      </div>
+    </main>
+
+    <footer class="mt-4 text-center">
+      <p>Score: <span id="score">0</span></p>
+    </footer>
   </div>
-  <script src="index.js"></script>
-  </body>
+
+  <script>
+    const questions = [
+      { question: "What is 2 + 2?", options: [3, 4, 5, 6], correct: 4 },
+      { question: "What is the capital of France?", options: ["Paris", "Rome", "Berlin", "Madrid"], correct: "Paris" },
+      { question: "What is 5 x 3?", options: [15, 20, 25, 30], correct: 15 },
+      { question: "What color is the sky?", options: ["Blue", "Green", "Red", "Yellow"], correct: "Blue" },
+      { question: "How many days are in a week?", options: [5, 6, 7, 8], correct: 7 },
+      { question: "What is 10 - 4?", options: [4, 6, 8, 10], correct: 6 },
+      { question: "What is 3 x 3?", options: [6, 9, 12, 15], correct: 9 },
+      { question: "What is the boiling point of water?", options: [50, 70, 90, 100], correct: 100 },
+      { question: "How many continents are there?", options: [5, 6, 7, 8], correct: 7 },
+      { question: "What is the square root of 16?", options: [2, 3, 4, 5], correct: 4 },
+    ];
+
+    let currentQuestionIndex = 0;
+    let score = 0;
+
+    const questionElement = document.getElementById('question');
+    const optionsContainer = document.getElementById('options');
+    const nextButton = document.getElementById('next-btn');
+    const scoreElement = document.getElementById('score');
+    const resultContainer = document.getElementById('result-container');
+    const finalScoreElement = document.getElementById('final-score');
+    const restartButton = document.getElementById('restart-btn');
+    const quizContainer = document.getElementById('quiz-container');
+
+    function loadQuestion() {
+      const currentQuestion = questions[currentQuestionIndex];
+      questionElement.textContent = `Question ${currentQuestionIndex + 1}/${questions.length}: ${currentQuestion.question}`;
+
+      optionsContainer.innerHTML = '';
+      currentQuestion.options.forEach((option, index) => {
+        const button = document.createElement('button');
+        button.textContent = option;
+        button.classList.add('w-full', 'bg-gray-200', 'py-2', 'rounded', 'hover:bg-gray-300');
+        button.addEventListener('click', () => selectAnswer(button, option));
+        optionsContainer.appendChild(button);
+      });
+    }
+
+    function selectAnswer(button, selectedOption) {
+      const currentQuestion = questions[currentQuestionIndex];
+
+      if (selectedOption === currentQuestion.correct) {
+        button.classList.add('correct');
+        score++;
+        scoreElement.textContent = score;
+      } else {
+        button.classList.add('incorrect');
+      }
+
+      Array.from(optionsContainer.children).forEach(btn => btn.disabled = true);
+    }
+
+    function showResult() {
+      quizContainer.classList.add('hidden');
+      resultContainer.classList.remove('hidden');
+      finalScoreElement.textContent = `Your final score is ${score}/${questions.length}`;
+    }
+
+    function restartQuiz() {
+      currentQuestionIndex = 0;
+      score = 0;
+      scoreElement.textContent = score;
+      quizContainer.classList.remove('hidden');
+      resultContainer.classList.add('hidden');
+      loadQuestion();
+    }
+
+    nextButton.addEventListener('click', () => {
+      if (currentQuestionIndex < questions.length - 1) {
+        currentQuestionIndex++;
+        loadQuestion();
+      } else {
+        showResult();
+      }
+    });
+
+    restartButton.addEventListener('click', restartQuiz);
+
+    loadQuestion();
+  </script>
+</body>
 </html>
