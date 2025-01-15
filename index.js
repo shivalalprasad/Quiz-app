@@ -1,104 +1,56 @@
 const questions = [
   {
-    question: "What is 2 + 2?",
-    options: [3, 4, 5, 6],
-    correct: 4
-  },
-  { question: "What is the capital of France?",
-    options: ["Paris", "Rome", "Berlin", "Madrid"],
-    correct: "Paris"
+    question: "Which Indian space mission reached the L1 point in January 2024 to study the Sun?",
+    options: ["Chandrayaan-3", "Mangalyaan", "Aditya-L1", "Gaganyaan"],
+    correct: "Aditya-L1",
   },
   {
-    question: "What is 5 x 3?",
-    options: [15, 20, 25, 30],
-    correct: 15
+    question: "As of November 2024, what was India's total installed renewable energy capacity?",
+    options: ["150 GW", "180 GW", "214 GW", "250 GW"],
+    correct: "214 GW",
   },
   {
-    question: "What color is the sky?",
-    options: ["Blue", "Green", "Red", "Yellow"],
-    correct: "Blue"
+    question: "Which Indian space agency successfully launched the European Space Agency's Proba-3 satellites in December 2024?",
+    options: ["DRDO", "ISRO", "NASA", "SpaceX"],
+    correct: "ISRO",
   },
   {
-    question: "How many days are in a week?",
-    options: [5, 6, 7, 8],
-    correct: 7
+    question: "What was the projected nominal economic growth rate for India in the fiscal year 2024-2025?",
+    options: ["8.5%", "9.7%", "10.3%", "11.0%"],
+    correct: "10.3%",
   },
   {
-    question: "What is 10 - 4?",
-    options: [4, 6, 8, 10],
-    correct: 6
+    question: "Which Indian festival, known as the festival of lights, was celebrated in November 2024?",
+    options: ["Holi", "Diwali", "Eid-Ul-Fitr", "Christmas"],
+    correct: "Diwali",
   },
   {
-    question: "What is 3 x 3?",
-    options: [6, 9, 12, 15],
-    correct: 9
+    question: "In 2024, which Indian mission was dedicated to studying X-ray emissions from celestial sources?",
+    options: ["XPoSat", "Aditya-L1", "Mangalyaan", "Chandrayaan-3"],
+    correct: "XPoSat",
   },
   {
-    question: "What is the boiling point of water?",
-    options: [50, 70, 90, 100],
-    correct: 100
+    question: "Which Indian festival, marking the Tamil harvest season, was celebrated in mid-January 2024?",
+    options: ["Pongal", "Onam", "Bihu", "Navratri"],
+    correct: "Pongal",
   },
   {
-    question: "How many continents are there?",
-    options: [5, 6, 7, 8],
-    correct: 7
+    question: "Which Indian mission, planned for 2024, aims to send humans to space for the first time?",
+    options: ["Chandrayaan-3", "Gaganyaan", "Mangalyaan", "Aditya-L1"],
+    correct: "Gaganyaan",
   },
   {
-    question: "What is the square root of 16?",
-    options: [2, 3, 4, 5],
-    correct: 4
+    question: "Which Indian festival, known for its vibrant colors, was celebrated in March 2024?",
+    options: ["Diwali", "Holi", "Eid-Ul-Fitr", "Christmas"],
+    correct: "Holi",
   },
   {
-    question: "What is 2 + 2?",
-    options: [3, 4, 5, 6],
-    correct: 4,
-  },
-  {
-    question: "Which planet is known as the Red Planet?",
-    options: ["Earth", "Mars", "Venus", "Jupiter"],
-    correct: "Mars",
-  },
-  {
-    question: "What is the capital of France?",
-    options: ["Berlin", "Madrid", "Paris", "Rome"],
-    correct: "Paris",
-  },
-  {
-    question: "Which language is primarily used for web development?",
-    options: ["Python", "C++", "JavaScript", "Java"],
-    correct: "JavaScript",
-  },
-  {
-    question: "What is 5 * 3?",
-    options: [8, 10, 15, 20],
-    correct: 15,
-  },
-  {
-    question: "What is the boiling point of water?",
-    options: ["50°C", "100°C", "150°C", "200°C"],
-    correct: "100°C",
-  },
-  {
-    question: "Who wrote 'Romeo and Juliet'?",
-    options: ["Charles Dickens", "William Shakespeare", "Mark Twain", "Jane Austen"],
-    correct: "William Shakespeare",
-  },
-  {
-    question: "What is the smallest prime number?",
-    options: [1, 2, 3, 5],
-    correct: 2,
-  },
-  {
-    question: "Which is the largest mammal?",
-    options: ["Elephant", "Blue Whale", "Shark", "Dinosaur"],
-    correct: "Blue Whale",
-  },
-  {
-    question: "What is the square root of 16?",
-    options: [2, 4, 8, 16],
-    correct: 4,
+    question: "Which Indian festival, dedicated to Lord Shiva, was celebrated in March 2024?",
+    options: ["Mahashivratri", "Janmashtami", "Ganesh Chaturthi", "Navratri"],
+    correct: "Mahashivratri",
   },
 ];
+
 
 let currentQuestionIndex = 0;
 let score = 0;
